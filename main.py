@@ -1,9 +1,11 @@
 #%%
-
+import numpy as np 
+import tensorflow as tf 
+import re 
+import time 
 import pandas as pd 
-import matplotlib.pyplot as plt 
-print("hay")
-plt.plot([1,2,3],[1,2,3],'r')
-print("me")
+#%% 
+lines = open('movie_lines.txt', encoding='utf-8', errors='ignore').read().split('\n')
+conversations = open('movie_conversations.txt', encoding='utf-8', errors='ignore').read().split('\n')
 
-print("vpn")
+#%%
