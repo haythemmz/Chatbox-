@@ -9,3 +9,5 @@ lines = open('movie_lines.txt', encoding='utf-8', errors='ignore').read().split(
 conversations = open('movie_conversations.txt', encoding='utf-8', errors='ignore').read().split('\n')
 
 #%%
+id_line={}
+
