@@ -88,11 +88,47 @@ def clean_text(text):
         for j in abbr_dict.keys():
                 text=re.sub(j,abbr_dict[j],text)
         return text
-clean_question=[]
+clean_questions=[]
 for q in questions:
         clean_question.append(clean_text(q))
 
-clean_aswers = []
+clean_answers = []
 for a in answers:
         clean_aswers.append(clean_text(a))
 #%%
+word2count = {}
+for question in clean_question:
+    for word in question.split():
+        if word not in word2count:
+            word2count[word] = 1
+        else:
+            word2count[word] += 1
+for answer in clean_answers:
+    for word in answer.split():
+        if word not in word2count:
+            word2count[word] = 1
+        else:
+            word2count[word] += 1
+#%%
+threshold=15 
+questionswords2int = {}
+word_number = 0
+for word, count in word2count.items():
+    if count >= threshold:
+        questionswords2int[word] = word_number
+        word_number += 1
+
+answerswords2int = {}
+word_number = 0
+for word, count in word2count.items():
+    if count >= threshold:
+        answerswords2int[word] = word_number
+        word_number += 1
+
+
+#%%
+tokens = ['<PAD>', '<EOS>', '<OUT>', '<SOS>']
+for token in tokens:
+    questionswords2int[token] = len(questionswords2int) + 1
+for token in tokens:
+    answerswords2int[token] = len(answerswords2int) + 1
