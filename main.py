@@ -1,6 +1,6 @@
 #%%
 import numpy as np 
-import tensorflow as tf 
+#import tensorflow as tf 
 import re 
 import time 
 import pandas as pd 
@@ -90,14 +90,14 @@ def clean_text(text):
         return text
 clean_questions=[]
 for q in questions:
-        clean_question.append(clean_text(q))
+        clean_questions.append(clean_text(q))
 
 clean_answers = []
 for a in answers:
-        clean_aswers.append(clean_text(a))
+        clean_answers.append(clean_text(a))
 #%%
 word2count = {}
-for question in clean_question:
+for question in clean_questions:
     for word in question.split():
         if word not in word2count:
             word2count[word] = 1
