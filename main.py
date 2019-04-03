@@ -171,9 +171,6 @@ for length in range(1, 25 + 1):
             sorted_clean_questions.append(questions_into_int[i[0]])
             sorted_clean_answers.append(answers_into_int[i[0]])
 
-<<<<<<< HEAD
-#%%
-=======
 
 #%%
 def model_inputs():
@@ -182,4 +179,22 @@ def model_inputs():
     lr = tf.placeholder(tf.float32, name = 'learning_rate')
     keep_prob = tf.placeholder(tf.float32, name = 'keep_prob')
     return inputs, targets, lr, keep_prob
->>>>>>> 11b49e4d41e21dc14da03d432f6e1382e3bf8df3
+#%%
+def preprocess_targets(targets, word2int, batch_size):
+    left_side = tf.fill([batch_size, 1], word2int['<SOS>'])
+    right_side = tf.strided_slice(targets, [0,0], [batch_size, -1], [1,1])
+    preprocessed_targets = tf.concat([left_side, right_side], 1)
+    return preprocessed_targets
+
+#%%
+
+def encoder_rnn(rnn_inputs, rnn_size, num_layers, keep_prob, sequence_length):
+    lstm = tf.contrib.rnn.BasicLSTMCell(rnn_size)
+    lstm_dropout = tf.contrib.rnn.DropoutWrapper(lstm, input_keep_prob = keep_prob)
+    encoder_cell = tf.contrib.rnn.MultiRNNCell([lstm_dropout] * num_layers)
+    encoder_output, encoder_state = tf.nn.bidirectional_dynamic_rnn(cell_fw = encoder_cell,
+                                                                    cell_bw = encoder_cell,
+                                                                    sequence_length = sequence_length,
+                                                                    inputs = rnn_inputs,
+                                                                    dtype = tf.float32)
+    azerty123return encoder_state
