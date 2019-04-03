@@ -1,6 +1,6 @@
 #%%
 import numpy as np 
-#import tensorflow as tf 
+import tensorflow as tf 
 import re 
 import time 
 import pandas as pd 
@@ -170,3 +170,5 @@ for length in range(1, 25 + 1):
         if len(i[1]) == length:
             sorted_clean_questions.append(questions_into_int[i[0]])
             sorted_clean_answers.append(answers_into_int[i[0]])
+
+#%%
