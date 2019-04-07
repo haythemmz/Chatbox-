@@ -179,9 +179,13 @@ def model_inputs():
     lr = tf.placeholder(tf.float32, name = 'learning_rate')
     keep_prob = tf.placeholder(tf.float32, name = 'keep_prob')
     return inputs, targets, lr, keep_prob
+<<<<<<< HEAD
 
 #%%
 
+=======
+#%%
+>>>>>>> 43e848966387568375d4040792205e6413dbb8e3
 def preprocess_targets(targets, word2int, batch_size):
     left_side = tf.fill([batch_size, 1], word2int['<SOS>'])
     right_side = tf.strided_slice(targets, [0,0], [batch_size, -1], [1,1])
@@ -189,6 +193,10 @@ def preprocess_targets(targets, word2int, batch_size):
     return preprocessed_targets
 
 #%%
+<<<<<<< HEAD
+=======
+
+>>>>>>> 43e848966387568375d4040792205e6413dbb8e3
 def encoder_rnn(rnn_inputs, rnn_size, num_layers, keep_prob, sequence_length):
     lstm = tf.contrib.rnn.BasicLSTMCell(rnn_size)
     lstm_dropout = tf.contrib.rnn.DropoutWrapper(lstm, input_keep_prob = keep_prob)
